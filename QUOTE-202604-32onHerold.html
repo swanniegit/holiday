@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Quote — 32onHerold Holidays Website</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; font-size: 12px; line-height: 1.5; color: #1e293b; }
+        .invoice { max-width: 800px; margin: 0 auto; padding: 40px; }
+        .header { display: flex; justify-content: space-between; margin-bottom: 40px; }
+        .logo { font-size: 24px; font-weight: bold; color: #f5c518; }
+        .logo span { display: block; font-size: 11px; font-weight: normal; color: #64748b; letter-spacing: 0.5px; text-transform: uppercase; margin-top: 2px; }
+        .invoice-title { text-align: right; }
+        .invoice-title h1 { font-size: 28px; color: #1e293b; margin-bottom: 5px; }
+        .invoice-number { font-size: 14px; color: #64748b; }
+        .status { display: inline-block; padding: 4px 12px; border-radius: 4px; font-size: 11px; font-weight: bold; text-transform: uppercase; color: white; background-color: #b8923a; }
+        .details { display: flex; justify-content: space-between; margin-bottom: 30px; }
+        .details-section { width: 48%; }
+        .details-section h3 { font-size: 11px; text-transform: uppercase; color: #64748b; margin-bottom: 8px; letter-spacing: 0.5px; }
+        .details-section p { margin-bottom: 4px; }
+        .table { width: 100%; border-collapse: collapse; margin-bottom: 30px; margin-top: 20px; }
+        .table th { background: #f1f5f9; padding: 12px; text-align: left; font-size: 11px; text-transform: uppercase; color: #64748b; border-bottom: 2px solid #e2e8f0; }
+        .table td { padding: 12px; border-bottom: 1px solid #e2e8f0; vertical-align: top; }
+        .table .amount { text-align: right; white-space: nowrap; }
+        .table .sub { font-size: 11px; color: #64748b; margin-top: 2px; }
+        .section-heading td { background: #fdf8f0; font-size: 11px; font-weight: bold; text-transform: uppercase; color: #b8923a; letter-spacing: 0.5px; padding: 8px 12px; border-bottom: 1px solid #e2e8f0; }
+        .section-heading.addon td { background: #f8fafc; color: #94a3b8; }
+        .table tr.addon-row td { color: #94a3b8; }
+        .table tr.addon-row .sub { color: #cbd5e1; }
+        .table tr.addon-row .amount { color: #94a3b8; }
+        .totals { width: 300px; margin-left: auto; }
+        .totals-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #e2e8f0; }
+        .totals-row.total { font-size: 16px; font-weight: bold; border-bottom: 2px solid #1e293b; padding-top: 10px; }
+        .totals-row.monthly-label { color: #64748b; font-size: 11px; border-bottom: none; padding-top: 20px; font-style: italic; }
+        .totals-row.monthly-total { font-size: 13px; font-weight: bold; border-bottom: 1px solid #b8923a; color: #b8923a; }
+        .note { background: #fdf8f0; border-left: 3px solid #b8923a; padding: 12px 16px; border-radius: 0 6px 6px 0; margin-top: 30px; font-size: 11px; color: #64748b; line-height: 1.7; }
+        .note strong { color: #1e293b; }
+        .addon-note { background: #f8fafc; border-left: 3px solid #cbd5e1; padding: 12px 16px; border-radius: 0 6px 6px 0; margin-top: 12px; font-size: 11px; color: #94a3b8; line-height: 1.7; }
+        .addon-heading { margin-top: 40px; margin-bottom: 4px; font-size: 13px; font-weight: bold; color: #64748b; border-bottom: 1px dashed #e2e8f0; padding-bottom: 8px; }
+        .addon-sub { font-size: 11px; color: #94a3b8; margin-bottom: 4px; }
+        .footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #e2e8f0; text-align: center; color: #64748b; font-size: 11px; }
+        .payment-info { background: #f8fafc; padding: 20px; border-radius: 8px; margin-top: 30px; }
+        .payment-info h3 { margin-bottom: 10px; font-size: 14px; }
+        @media print {
+            body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .invoice { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="invoice">
+
+        <div class="header">
+            <div class="logo">
+                Yellow Archer
+                <span>Web &amp; Digital Services</span>
+            </div>
+            <div class="invoice-title">
+                <h1>QUOTE</h1>
+                <p class="invoice-number">QUO-202604-001</p>
+                <span class="status">Awaiting Approval</span>
+            </div>
+        </div>
+
+        <div class="details">
+            <div class="details-section">
+                <h3>From</h3>
+                <p><strong>Yellow Archer</strong></p>
+                <p>Christo Swanepoel</p>
+                <p>62 Lombard Street, Raceview</p>
+                <p>Alberton</p>
+                <p>christo@yellowarcher.co.za</p>
+            </div>
+            <div class="details-section">
+                <h3>Prepared For</h3>
+                <p><strong>32onHerold Holidays</strong></p>
+                <p>Somerset West, Cape Town</p>
+                <p>South Africa</p>
+                <p>travel@pjfmarkgraaff.co.za</p>
+            </div>
+        </div>
+
+        <div class="details">
+            <div class="details-section">
+                <h3>Quote Date</h3>
+                <p>24 April 2026</p>
+            </div>
+            <div class="details-section">
+                <h3>Valid Until</h3>
+                <p>24 May 2026</p>
+            </div>
+        </div>
+
+        <!-- CORE QUOTE -->
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Description</th>
+                    <th>Qty</th>
+                    <th class="amount">Unit Price</th>
+                    <th class="amount">Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr class="section-heading">
+                    <td colspan="4">Once-off Setup</td>
+                </tr>
+                <tr>
+                    <td>
+                        Initial Setup
+                        <div class="sub">Next.js project, Vercel deployment, brand system (colors, fonts, logo), reusable component library, Contact page, Footer</div>
+                    </td>
+                    <td>1</td>
+                    <td class="amount">R 1,800.00</td>
+                    <td class="amount">R 1,800.00</td>
+                </tr>
+
+                <tr class="section-heading">
+                    <td colspan="4">Standard Features — R300 each</td>
+                </tr>
+                <tr>
+                    <td>
+                        Destinations Page
+                        <div class="sub">Static destination cards with images and descriptions — "Enquire for more info" call to action</div>
+                    </td>
+                    <td>1</td>
+                    <td class="amount">R 300.00</td>
+                    <td class="amount">R 300.00</td>
+                </tr>
+                <tr>
+                    <td>
+                        Packages Page
+                        <div class="sub">Static package cards per destination — "Enquire for more info" leads to contact form, no live pricing</div>
+                    </td>
+                    <td>1</td>
+                    <td class="amount">R 300.00</td>
+                    <td class="amount">R 300.00</td>
+                </tr>
+
+                <tr class="section-heading">
+                    <td colspan="4">Beachcomber API Integration (Mauritius live pricing)</td>
+                </tr>
+                <tr>
+                    <td>
+                        Beachcomber Specials
+                        <div class="sub">Live specials feed from Beachcomber API — packages, pricing, hotel images, travel dates</div>
+                    </td>
+                    <td>1</td>
+                    <td class="amount">R 600.00</td>
+                    <td class="amount">R 600.00</td>
+                </tr>
+                <tr>
+                    <td>
+                        Beachcomber Live Search + Quote Emailer
+                        <div class="sub">Real-time quotes by hotel, dates &amp; party size — client receives emailed quote directly via Beachcomber API</div>
+                    </td>
+                    <td>1</td>
+                    <td class="amount">R 900.00</td>
+                    <td class="amount">R 900.00</td>
+                </tr>
+
+            </tbody>
+        </table>
+
+        <div class="totals">
+            <div class="totals-row">
+                <span>Subtotal</span>
+                <span>R 3,900.00</span>
+            </div>
+            <div class="totals-row total">
+                <span>Once-off Total</span>
+                <span>R 3,900.00</span>
+            </div>
+
+            <div class="totals-row monthly-label">
+                <span>— Monthly Subscription (from go-live) —</span>
+            </div>
+            <div class="totals-row">
+                <span>Hosting (Vercel)</span>
+                <span>R 250.00 / month</span>
+            </div>
+            <div class="totals-row">
+                <span>Maintenance &amp; Content Updates</span>
+                <span>R 250.00 / month</span>
+            </div>
+            <div class="totals-row monthly-total">
+                <span>Combined Monthly</span>
+                <span>R 500.00 / month</span>
+            </div>
+        </div>
+
+        <div class="note">
+            <strong>Monthly subscription note:</strong> The R500/month is made up of two components — R250/month Hosting (Vercel server &amp; domain management) and R250/month Maintenance &amp; Content Updates (dependency updates, security patches, uptime monitoring, and minor content changes such as new packages, destination info, or photos). These can be taken together or individually.
+        </div>
+
+        <!-- OPTIONAL ADD-ONS -->
+        <div class="addon-heading">Optional Add-ons — Available at Any Time</div>
+        <div class="addon-sub">The features below are not included in this quote. They can be added individually at the prices listed whenever you are ready to expand the site.</div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Description</th>
+                    <th>Qty</th>
+                    <th class="amount">Unit Price</th>
+                    <th class="amount">Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr class="section-heading addon">
+                    <td colspan="4">Page Add-ons</td>
+                </tr>
+                <tr class="addon-row">
+                    <td>
+                        Home Page
+                        <div class="sub">All sections: hero, featured destinations, popular packages, testimonials highlight, CTA banner</div>
+                    </td>
+                    <td>1</td>
+                    <td class="amount">R 600.00</td>
+                    <td class="amount">R 600.00</td>
+                </tr>
+                <tr class="addon-row">
+                    <td>
+                        Testimonials Page
+                        <div class="sub">Star ratings, client reviews, traveller profiles</div>
+                    </td>
+                    <td>1</td>
+                    <td class="amount">R 300.00</td>
+                    <td class="amount">R 300.00</td>
+                </tr>
+                <tr class="addon-row">
+                    <td>
+                        Blog Page (Static)
+                        <div class="sub">Article listing and individual post pages, managed via files</div>
+                    </td>
+                    <td>1</td>
+                    <td class="amount">R 300.00</td>
+                    <td class="amount">R 300.00</td>
+                </tr>
+
+                <tr class="section-heading addon">
+                    <td colspan="4">Feature Add-ons</td>
+                </tr>
+                <tr class="addon-row">
+                    <td>
+                        Video Hero
+                        <div class="sub">Autoplay background video on home page, static image fallback for mobile</div>
+                    </td>
+                    <td>1</td>
+                    <td class="amount">R 600.00</td>
+                    <td class="amount">R 600.00</td>
+                </tr>
+                <tr class="addon-row">
+                    <td>
+                        Floating Search Widget
+                        <div class="sub">Persistent hotel + date + guests search widget, links to Beachcomber results page</div>
+                    </td>
+                    <td>1</td>
+                    <td class="amount">R 600.00</td>
+                    <td class="amount">R 600.00</td>
+                </tr>
+
+            </tbody>
+        </table>
+
+        <div class="addon-note">
+            All add-ons are priced independently and can be requested at any stage after the initial site is live. Adding all optional features above would bring the total once-off investment to R6,300 (R3,900 core + R2,400 in add-ons).
+        </div>
+
+        <div class="payment-info">
+            <h3>Payment Information</h3>
+            <p><strong>Account Name:</strong> YellowArcher</p>
+            <p><strong>Bank:</strong> Capitec Business</p>
+            <p><strong>Account Number:</strong> 1054 0232 20</p>
+            <p><strong>Reference:</strong> 32onHerold Holidays</p>
+        </div>
+
+        <div class="footer">
+            <p>Thank you for considering Yellow Archer — we look forward to building something beautiful together.</p>
+            <p style="margin-top: 6px;">Yellow Archer | christo@yellowarcher.co.za</p>
+        </div>
+
+    </div>
+</body>
+</html>
