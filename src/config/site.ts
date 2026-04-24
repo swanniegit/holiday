@@ -93,6 +93,39 @@ export const DESTINATIONS = [
     duration: "5–10",
     image: "https://picsum.photos/seed/belgium/800/600",
   },
+  {
+    slug: "bali",
+    country: "Indonesia",
+    flag: "🇮🇩",
+    name: "Bali",
+    rating: "4.8",
+    description: "The Island of the Gods offers lush rice terraces, ancient temples, volcanic mountains, and a vibrant arts scene.",
+    bestTime: "April to October",
+    duration: "7–14",
+    image: "https://picsum.photos/seed/bali/800/600",
+  },
+  {
+    slug: "paris",
+    country: "France",
+    flag: "🇫🇷",
+    name: "Paris",
+    rating: "4.7",
+    description: "The City of Light dazzles with world-class art, iconic landmarks, exquisite cuisine, and unmatched romance.",
+    bestTime: "April to June",
+    duration: "5–10",
+    image: "https://picsum.photos/seed/paris/800/600",
+  },
+  {
+    slug: "cape-town",
+    country: "South Africa",
+    flag: "🇿🇦",
+    name: "Cape Town",
+    rating: "4.8",
+    description: "A breathtaking city at the tip of Africa offering dramatic mountains, pristine beaches, and world-famous wines.",
+    bestTime: "November to March",
+    duration: "5–10",
+    image: "https://picsum.photos/seed/capetown/800/600",
+  },
 ];
 
 export const PACKAGES = [
@@ -133,7 +166,7 @@ export const TESTIMONIALS = [
   {
     name: "Anna-Mart Peens",
     trip: "Belgium Holiday",
-    quote: "Our trip to Belgium planned by 32 on Herold was absolutely wonderful! Every detail was so well thought out, and we felt completely taken care of from start to finish. Thanks to their guidance we discovered hidden gems, enjoyed the most charming towns, and truly experienced the heart of Belgium. Highly recommend them!",
+    quote: "Our trip to Belgium planned by 32 on Herold was absolutely wonderful! Every detail was so well thought out, and we felt completely taken care of from start to finish. Thanks to their guidance we discovered hidden gems, enjoyed the most charming towns, and truly experienced the heart of Belgium. We came home with beautiful memories and so much gratitude for the care and passion they put into our journey. Highly recommend them! 🤍",
   },
 ];
 
