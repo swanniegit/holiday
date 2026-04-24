@@ -9,8 +9,6 @@ export const SITE = {
     { label: "Home", href: "/" },
     { label: "Destinations", href: "/destinations" },
     { label: "Packages", href: "/packages" },
-    { label: "Testimonials", href: "/testimonials" },
-    { label: "Blog", href: "/blog" },
     { label: "Contact", href: "/contact" },
   ],
 };
