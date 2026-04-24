@@ -5,6 +5,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       { protocol: "https", hostname: "**.beachcomberonline.co.za" },
       { protocol: "https", hostname: "**.beachcomber-hotels.com" },
+      { protocol: "https", hostname: "picsum.photos" },
     ],
   },
 };

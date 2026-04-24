@@ -24,28 +24,35 @@ export default function Hero({
   overlay = "medium",
 }: HeroProps) {
   const overlayClass = {
-    light: "bg-black/30",
-    medium: "bg-black/45",
-    dark: "bg-black/60",
+    light: "bg-black/25",
+    medium: "bg-black/40",
+    dark: "bg-black/55",
   }[overlay];
 
   return (
     <section
       className="relative min-h-screen flex items-center justify-center text-white"
-      style={{ backgroundImage: `url(${image})`, backgroundSize: "cover", backgroundPosition: "center" }}
+      style={{
+        backgroundImage: `url(${image})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
     >
       <div className={`absolute inset-0 ${overlayClass}`} />
-      <div className="relative z-10 text-center px-6 max-w-3xl mx-auto animate-fade-up">
-        <h1 className="font-display text-5xl md:text-7xl font-semibold leading-tight">
-          {title}
+      <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
+        <h1 className="font-display leading-tight">
+          <span className="block font-normal text-white text-5xl md:text-6xl">
+            {title}
+          </span>
           {titleGold && (
-            <>
-              <br />
-              <span className="text-gold-light italic">{titleGold}</span>
-            </>
+            <span className="block italic font-semibold text-gold-light text-6xl md:text-8xl mt-1">
+              {titleGold}
+            </span>
           )}
         </h1>
-        <p className="mt-6 text-base md:text-lg text-white/90 max-w-xl mx-auto">{subtitle}</p>
+        <p className="mt-6 text-sm md:text-base text-white/85 max-w-lg mx-auto leading-relaxed">
+          {subtitle}
+        </p>
         {ctas && ctas.length > 0 && (
           <div className="mt-8 flex flex-wrap gap-4 justify-center">
             {ctas.map(({ label, href, variant }) => (
@@ -54,8 +61,8 @@ export default function Hero({
                 href={href}
                 className={
                   variant === "primary"
-                    ? "px-6 py-3 bg-gold text-white font-medium hover:bg-gold-dark transition-colors"
-                    : "px-6 py-3 border border-white text-white hover:bg-white/10 transition-colors"
+                    ? "px-7 py-3 bg-gold text-white text-sm font-medium hover:bg-gold-dark transition-colors"
+                    : "px-7 py-3 border border-white/70 text-white text-sm hover:bg-white/10 transition-colors"
                 }
               >
                 {label}

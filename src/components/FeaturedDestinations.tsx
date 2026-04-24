@@ -11,31 +11,42 @@ export default function FeaturedDestinations() {
           <h2 className="font-display text-4xl md:text-5xl text-charcoal font-semibold">
             Featured Destinations
           </h2>
-          <p className="mt-3 text-charcoal/60 max-w-md mx-auto">
+          <p className="mt-3 text-charcoal/55 text-sm max-w-md mx-auto">
             Explore breathtaking locations handpicked by our travel experts
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {featured.map(({ slug, country, name, description, bestTime, duration, image }) => (
-            <div key={slug} className="bg-white rounded-sm overflow-hidden shadow-sm group">
-              <div className="relative h-52 overflow-hidden bg-cream-dark">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {featured.map(({ slug, country, flag, name, rating, description, bestTime, image }) => (
+            <div key={slug} className="bg-white rounded-2xl overflow-hidden shadow-sm group">
+              <div className="relative h-56 overflow-hidden">
                 <img
                   src={image}
                   alt={name}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute top-3 right-3 bg-gold text-white text-xs px-2 py-1 font-medium">
-                  {duration} days
+                {/* Rating badge — top right */}
+                <div className="absolute top-3 right-3 w-10 h-10 rounded-full bg-gold flex items-center justify-center shadow">
+                  <span className="text-white text-xs font-bold leading-none">{rating}</span>
+                </div>
+                {/* Flag + country — bottom left */}
+                <div className="absolute bottom-3 left-3 flex items-center gap-1.5 bg-black/40 backdrop-blur-sm text-white text-xs px-2.5 py-1.5 rounded-full">
+                  <span>{flag}</span>
+                  <span className="font-medium">{country}</span>
                 </div>
               </div>
-              <div className="p-6">
-                <p className="text-gold text-xs font-semibold uppercase tracking-wider mb-1">
+
+              <div className="p-5">
+                <p className="text-gold text-xs font-semibold uppercase tracking-widest mb-1">
                   {country}
                 </p>
                 <h3 className="font-display text-xl text-charcoal font-semibold mb-2">{name}</h3>
-                <p className="text-charcoal/60 text-sm leading-relaxed mb-4">{description}</p>
-                <p className="text-gold text-xs">Best time: {bestTime}</p>
+                <p className="text-charcoal/55 text-sm leading-relaxed mb-4 line-clamp-3">
+                  {description}
+                </p>
+                <p className="text-gold text-xs font-medium">
+                  Best time: {bestTime} →
+                </p>
               </div>
             </div>
           ))}
@@ -44,7 +55,7 @@ export default function FeaturedDestinations() {
         <div className="text-center mt-10">
           <Link
             href="/destinations"
-            className="inline-flex items-center gap-2 px-6 py-3 border border-gold text-gold hover:bg-gold hover:text-white transition-colors text-sm font-medium"
+            className="inline-flex items-center gap-2 px-7 py-3 border border-gold text-gold text-sm font-medium hover:bg-gold hover:text-white transition-colors rounded-sm"
           >
             View All Destinations
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
