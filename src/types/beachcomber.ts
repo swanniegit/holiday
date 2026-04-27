@@ -132,6 +132,8 @@ export interface EnquiryPayload {
   packageName?: string;
   name: string;
   surname: string;
+  email?: string;
+  phone?: string;
   travelDates: string;
   adults: number;
   children: number;

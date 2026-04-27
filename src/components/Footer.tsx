@@ -39,8 +39,11 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-cream-dark py-4 text-center text-xs text-charcoal/40">
-        © {new Date().getFullYear()} {SITE.name}. All rights reserved.
+      <div className="border-t border-cream-dark py-4 text-center text-xs text-charcoal/40 flex flex-col sm:flex-row items-center justify-center gap-3">
+        <span>© {new Date().getFullYear()} {SITE.name}. All rights reserved.</span>
+        <Link href="/disclaimer" className="hover:text-gold transition-colors">
+          Disclaimer
+        </Link>
       </div>
     </footer>
   );
