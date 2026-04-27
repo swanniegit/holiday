@@ -15,7 +15,7 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   title: {
     default: "32onHerold Holidays | Curated Travel Experiences",
-    template: "%s | 32onHerold Holidays",
+    template: "%s | 32onHerold",
   },
   description:
     "Expert travel packages to Mauritius, Zanzibar, Maldives, Phuket and more. Based in Somerset West, Cape Town.",
