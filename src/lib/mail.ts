@@ -17,9 +17,17 @@ export interface MailOptions {
   replyTo?: string;
 }
 
-export async function sendMail(opts: MailOptions) {
-  return transporter.sendMail({
-    from: `32onHerold Holidays <${process.env.SMTP_FROM}>`,
-    ...opts,
-  });
+export async function sendMail(opts: MailOptions, retries = 2): Promise<void> {
+  for (let attempt = 0; attempt <= retries; attempt++) {
+    try {
+      await transporter.sendMail({
+        from: `32onHerold Holidays <${process.env.SMTP_FROM}>`,
+        ...opts,
+      });
+      return;
+    } catch (err) {
+      if (attempt === retries) throw err;
+      await new Promise((r) => setTimeout(r, 500 * (attempt + 1)));
+    }
+  }
 }
