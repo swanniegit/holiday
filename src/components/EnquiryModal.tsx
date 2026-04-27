@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, FormEvent } from "react";
+import { useState, FormEvent, ReactNode } from "react";
 import { DEPARTURE_CITIES, STAR_GRADINGS } from "@/config/site";
 import type { EnquiryPayload } from "@/types/beachcomber";
 
@@ -12,6 +12,23 @@ interface EnquiryModalProps {
 
 const ADULTS_OPTIONS = [1, 2, 3, 4, 5, 6];
 const CHILDREN_OPTIONS = [0, 1, 2, 3, 4];
+
+function FormSection({ title, iconPath, children }: { title: string; iconPath: string | string[]; children: ReactNode }) {
+  const paths = Array.isArray(iconPath) ? iconPath : [iconPath];
+  return (
+    <section>
+      <h3 className="font-display text-charcoal font-semibold flex items-center gap-2 mb-4">
+        <svg className="w-4 h-4 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          {paths.map((d, i) => (
+            <path key={i} strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={d} />
+          ))}
+        </svg>
+        {title}
+      </h3>
+      {children}
+    </section>
+  );
+}
 
 export default function EnquiryModal({ packageName, destination, onClose }: EnquiryModalProps) {
   const [form, setForm] = useState<EnquiryPayload>({
@@ -58,9 +75,7 @@ export default function EnquiryModal({ packageName, destination, onClose }: Enqu
             <div>
               <h2 className="font-display text-2xl text-charcoal font-semibold">Travel Enquiry</h2>
               {packageName && destination && (
-                <p className="text-gold text-sm mt-1">
-                  {packageName} – {destination}
-                </p>
+                <p className="text-gold text-sm mt-1">{packageName} – {destination}</p>
               )}
             </div>
             <button onClick={onClose} className="text-charcoal/40 hover:text-charcoal transition-colors">
@@ -85,180 +100,101 @@ export default function EnquiryModal({ packageName, destination, onClose }: Enqu
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-6">
-              <section>
-                <h3 className="font-display text-charcoal font-semibold flex items-center gap-2 mb-4">
-                  <svg className="w-4 h-4 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                  </svg>
-                  Personal Details
-                </h3>
+              <FormSection title="Personal Details" iconPath="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z">
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label className="block text-xs text-charcoal/60 mb-1.5">Name *</label>
-                    <input
-                      required
-                      type="text"
-                      value={form.name}
-                      onChange={(e) => update("name", e.target.value)}
-                      className="w-full border border-cream-dark px-3 py-2.5 text-sm text-charcoal focus:outline-none focus:border-gold"
-                    />
+                    <input required type="text" value={form.name} onChange={(e) => update("name", e.target.value)}
+                      className="w-full border border-cream-dark px-3 py-2.5 text-sm text-charcoal focus:outline-none focus:border-gold" />
                   </div>
                   <div>
                     <label className="block text-xs text-charcoal/60 mb-1.5">Surname *</label>
-                    <input
-                      required
-                      type="text"
-                      value={form.surname}
-                      onChange={(e) => update("surname", e.target.value)}
-                      className="w-full border border-cream-dark px-3 py-2.5 text-sm text-charcoal focus:outline-none focus:border-gold"
-                    />
+                    <input required type="text" value={form.surname} onChange={(e) => update("surname", e.target.value)}
+                      className="w-full border border-cream-dark px-3 py-2.5 text-sm text-charcoal focus:outline-none focus:border-gold" />
                   </div>
                 </div>
-              </section>
+              </FormSection>
 
-              <section>
-                <h3 className="font-display text-charcoal font-semibold flex items-center gap-2 mb-4">
-                  <svg className="w-4 h-4 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
-                  Travel Details
-                </h3>
+              <FormSection title="Travel Details" iconPath="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
                 <div className="space-y-4">
                   <div>
                     <label className="block text-xs text-charcoal/60 mb-1.5">Preferred Travel Dates *</label>
-                    <input
-                      required
-                      type="text"
-                      placeholder="e.g., December 2024 or 15-25 Dec 2024"
-                      value={form.travelDates}
-                      onChange={(e) => update("travelDates", e.target.value)}
-                      className="w-full border border-cream-dark px-3 py-2.5 text-sm text-charcoal placeholder:text-charcoal/30 focus:outline-none focus:border-gold"
-                    />
+                    <input required type="text" placeholder="e.g., December 2024 or 15-25 Dec 2024"
+                      value={form.travelDates} onChange={(e) => update("travelDates", e.target.value)}
+                      className="w-full border border-cream-dark px-3 py-2.5 text-sm text-charcoal placeholder:text-charcoal/30 focus:outline-none focus:border-gold" />
                   </div>
                   <div className="grid grid-cols-2 gap-4">
                     <div>
                       <label className="block text-xs text-charcoal/60 mb-1.5">Number of Adults *</label>
-                      <select
-                        value={form.adults}
-                        onChange={(e) => update("adults", Number(e.target.value))}
-                        className="w-full border border-cream-dark px-3 py-2.5 text-sm text-charcoal focus:outline-none focus:border-gold"
-                      >
-                        {ADULTS_OPTIONS.map((n) => (
-                          <option key={n} value={n}>{n} Adult{n > 1 ? "s" : ""}</option>
-                        ))}
+                      <select value={form.adults} onChange={(e) => update("adults", Number(e.target.value))}
+                        className="w-full border border-cream-dark px-3 py-2.5 text-sm text-charcoal focus:outline-none focus:border-gold">
+                        {ADULTS_OPTIONS.map((n) => <option key={n} value={n}>{n} Adult{n > 1 ? "s" : ""}</option>)}
                       </select>
                     </div>
                     <div>
                       <label className="block text-xs text-charcoal/60 mb-1.5">Number of Children</label>
-                      <select
-                        value={form.children}
-                        onChange={(e) => update("children", Number(e.target.value))}
-                        className="w-full border border-cream-dark px-3 py-2.5 text-sm text-charcoal focus:outline-none focus:border-gold"
-                      >
-                        {CHILDREN_OPTIONS.map((n) => (
-                          <option key={n} value={n}>{n} {n === 1 ? "Child" : "Children"}</option>
-                        ))}
+                      <select value={form.children} onChange={(e) => update("children", Number(e.target.value))}
+                        className="w-full border border-cream-dark px-3 py-2.5 text-sm text-charcoal focus:outline-none focus:border-gold">
+                        {CHILDREN_OPTIONS.map((n) => <option key={n} value={n}>{n} {n === 1 ? "Child" : "Children"}</option>)}
                       </select>
                     </div>
                   </div>
                 </div>
-              </section>
+              </FormSection>
 
-              <section>
-                <h3 className="font-display text-charcoal font-semibold flex items-center gap-2 mb-4">
-                  <svg className="w-4 h-4 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                  Travel Preferences
-                </h3>
+              <FormSection title="Travel Preferences" iconPath={["M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z", "M15 11a3 3 0 11-6 0 3 3 0 016 0z"]}>
                 <div className="space-y-4">
                   <div>
                     <label className="block text-xs text-charcoal/60 mb-1.5">Departure City in South Africa *</label>
-                    <select
-                      required
-                      value={form.departureCity}
-                      onChange={(e) => update("departureCity", e.target.value)}
-                      className="w-full border border-cream-dark px-3 py-2.5 text-sm text-charcoal focus:outline-none focus:border-gold"
-                    >
+                    <select required value={form.departureCity} onChange={(e) => update("departureCity", e.target.value)}
+                      className="w-full border border-cream-dark px-3 py-2.5 text-sm text-charcoal focus:outline-none focus:border-gold">
                       <option value="">Select departure city</option>
-                      {DEPARTURE_CITIES.map((c) => (
-                        <option key={c} value={c}>{c}</option>
-                      ))}
+                      {DEPARTURE_CITIES.map((c) => <option key={c} value={c}>{c}</option>)}
                     </select>
                   </div>
                   <div>
                     <label className="block text-xs text-charcoal/60 mb-1.5">Budget (ZAR)</label>
-                    <input
-                      type="text"
-                      placeholder="e.g., R50,000 – R80,000"
-                      value={form.budget}
+                    <input type="text" placeholder="e.g., R50,000 – R80,000" value={form.budget}
                       onChange={(e) => update("budget", e.target.value)}
-                      className="w-full border border-cream-dark px-3 py-2.5 text-sm text-charcoal placeholder:text-charcoal/30 focus:outline-none focus:border-gold"
-                    />
+                      className="w-full border border-cream-dark px-3 py-2.5 text-sm text-charcoal placeholder:text-charcoal/30 focus:outline-none focus:border-gold" />
                   </div>
                   <div>
                     <label className="block text-xs text-charcoal/60 mb-1.5">Accommodation Star Grading</label>
-                    <select
-                      value={form.starGrading}
-                      onChange={(e) => update("starGrading", e.target.value)}
-                      className="w-full border border-cream-dark px-3 py-2.5 text-sm text-charcoal focus:outline-none focus:border-gold"
-                    >
+                    <select value={form.starGrading} onChange={(e) => update("starGrading", e.target.value)}
+                      className="w-full border border-cream-dark px-3 py-2.5 text-sm text-charcoal focus:outline-none focus:border-gold">
                       <option value="">Select star grading</option>
-                      {STAR_GRADINGS.map((s) => (
-                        <option key={s} value={s}>{s}</option>
-                      ))}
+                      {STAR_GRADINGS.map((s) => <option key={s} value={s}>{s}</option>)}
                     </select>
                   </div>
                   <div>
                     <label className="block text-xs text-charcoal/60 mb-1.5">Special Occasion</label>
-                    <input
-                      type="text"
-                      placeholder="e.g., Honeymoon, Anniversary, Birthday"
-                      value={form.specialOccasion}
+                    <input type="text" placeholder="e.g., Honeymoon, Anniversary, Birthday" value={form.specialOccasion}
                       onChange={(e) => update("specialOccasion", e.target.value)}
-                      className="w-full border border-cream-dark px-3 py-2.5 text-sm text-charcoal placeholder:text-charcoal/30 focus:outline-none focus:border-gold"
-                    />
+                      className="w-full border border-cream-dark px-3 py-2.5 text-sm text-charcoal placeholder:text-charcoal/30 focus:outline-none focus:border-gold" />
                   </div>
                 </div>
-              </section>
+              </FormSection>
 
-              <section>
-                <h3 className="font-display text-charcoal font-semibold flex items-center gap-2 mb-4">
-                  <svg className="w-4 h-4 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                  </svg>
-                  Additional Information
-                </h3>
+              <FormSection title="Additional Information" iconPath="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z">
                 <div>
                   <label className="block text-xs text-charcoal/60 mb-1.5">Additional Requirements or Questions</label>
-                  <textarea
-                    rows={4}
-                    placeholder="Any special requirements, dietary restrictions, accessibility needs, or questions…"
-                    value={form.additionalInfo}
-                    onChange={(e) => update("additionalInfo", e.target.value)}
-                    className="w-full border border-cream-dark px-3 py-2.5 text-sm text-charcoal placeholder:text-charcoal/30 focus:outline-none focus:border-gold resize-none"
-                  />
+                  <textarea rows={4} placeholder="Any special requirements, dietary restrictions, accessibility needs, or questions…"
+                    value={form.additionalInfo} onChange={(e) => update("additionalInfo", e.target.value)}
+                    className="w-full border border-cream-dark px-3 py-2.5 text-sm text-charcoal placeholder:text-charcoal/30 focus:outline-none focus:border-gold resize-none" />
                 </div>
-              </section>
+              </FormSection>
 
               {status === "error" && (
                 <p className="text-red-500 text-sm">Something went wrong. Please try again.</p>
               )}
 
               <div className="grid grid-cols-2 gap-4 pt-2">
-                <button
-                  type="button"
-                  onClick={onClose}
-                  className="py-3 border border-cream-dark text-charcoal text-sm font-medium hover:border-charcoal transition-colors"
-                >
+                <button type="button" onClick={onClose}
+                  className="py-3 border border-cream-dark text-charcoal text-sm font-medium hover:border-charcoal transition-colors">
                   Cancel
                 </button>
-                <button
-                  type="submit"
-                  disabled={status === "loading"}
-                  className="py-3 bg-gold text-white text-sm font-medium hover:bg-gold-dark transition-colors disabled:opacity-60"
-                >
+                <button type="submit" disabled={status === "loading"}
+                  className="py-3 bg-gold text-white text-sm font-medium hover:bg-gold-dark transition-colors disabled:opacity-60">
                   {status === "loading" ? "Sending…" : "Send Enquiry"}
                 </button>
               </div>

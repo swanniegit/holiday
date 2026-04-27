@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { SITE } from "@/config/site";
@@ -13,7 +14,7 @@ export default function Navbar() {
     <nav className="fixed top-0 inset-x-0 z-50 bg-white/95 backdrop-blur-sm border-b border-cream-dark">
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
         <Link href="/" className="flex items-center gap-2">
-          <img src="/logo.png" alt={SITE.name} className="h-9 w-auto" />
+          <Image src="/logo.png" alt={SITE.name} width={144} height={36} className="h-9 w-auto" />
           <span className="font-display text-gold font-semibold text-lg hidden sm:block">
             {SITE.name}
           </span>

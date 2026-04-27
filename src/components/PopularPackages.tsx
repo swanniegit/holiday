@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { PACKAGES } from "@/config/site";
 import EnquiryModal from "@/components/EnquiryModal";
 import SectionHeading from "@/components/SectionHeading";
@@ -21,10 +22,11 @@ export default function PopularPackages() {
           {PACKAGES.map(({ slug, destination, name, description, image }) => (
             <div key={slug} className="rounded-2xl overflow-hidden border border-cream-dark group">
               <div className="relative h-52 overflow-hidden">
-                <img
+                <Image
                   src={image}
                   alt={name}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute top-3 left-3 bg-gold text-white text-xs font-medium px-3 py-1 rounded-full">
                   {destination}

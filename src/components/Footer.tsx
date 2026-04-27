@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { SITE } from "@/config/site";
 
 export default function Footer() {
@@ -7,7 +8,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 py-14 grid grid-cols-1 md:grid-cols-3 gap-10">
         <div>
           <div className="flex items-center gap-2 mb-4">
-            <img src="/logo.png" alt={SITE.name} className="h-9 w-auto" />
+            <Image src="/logo.png" alt={SITE.name} width={144} height={36} className="h-9 w-auto" />
           </div>
           <p className="text-sm text-charcoal/70 leading-relaxed max-w-xs">{SITE.tagline}</p>
         </div>

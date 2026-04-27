@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 interface DestinationCardProps {
   slug: string;
   country: string;
@@ -24,10 +26,11 @@ export default function DestinationCard({
   return (
     <div className={cardClass}>
       <div className="relative h-56 overflow-hidden">
-        <img
+        <Image
           src={image}
           alt={name}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          fill
+          className="object-cover group-hover:scale-105 transition-transform duration-500"
         />
         <div className="absolute top-3 right-3 w-10 h-10 rounded-full bg-gold flex items-center justify-center shadow">
           <span className="text-white text-xs font-bold leading-none">{rating}</span>

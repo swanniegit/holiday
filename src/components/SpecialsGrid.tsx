@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import type { RatesRate, RatesResponse } from "@/types/beachcomber";
 import EnquiryModal from "@/components/EnquiryModal";
 import { formatZAR, formatDate } from "@/lib/format";
@@ -14,10 +15,11 @@ function SpecialCard({ rate, onEnquire }: { rate: RatesRate; onEnquire: () => vo
     <div className="border border-cream-dark rounded-sm overflow-hidden group">
       <div className="relative h-52 bg-cream-dark overflow-hidden">
         {image && (
-          <img
+          <Image
             src={image}
             alt={rate.hotelName}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            fill
+            className="object-cover group-hover:scale-105 transition-transform duration-500"
           />
         )}
         <div className="absolute top-3 left-3 bg-gold text-white text-xs px-2 py-1 font-medium">
