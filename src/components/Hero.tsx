@@ -31,12 +31,8 @@ export default function Hero({
 
   return (
     <section
-      className="relative min-h-screen flex items-center justify-center text-white"
-      style={{
-        backgroundImage: `url(${image})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
+      className="relative min-h-screen flex items-center justify-center text-white bg-cover bg-center"
+      style={{ backgroundImage: `url(${image})` }}
     >
       <div className={`absolute inset-0 ${overlayClass}`} />
       <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
