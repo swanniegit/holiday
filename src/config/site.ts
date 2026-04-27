@@ -90,7 +90,7 @@ export const DESTINATIONS = [
     description: "Discover charming medieval towns, world-class museums, and the finest chocolate and beer in Europe.",
     bestTime: "April to September",
     duration: "5–10",
-    image: "/images/dest-belgium.jpg",
+    image: "/images/pexels-aleksandre-lomadze-2154684396-33347992.jpg",
   },
   {
     slug: "bali",
@@ -123,7 +123,7 @@ export const DESTINATIONS = [
     description: "A breathtaking city at the tip of Africa offering dramatic mountains, pristine beaches, and world-famous wines.",
     bestTime: "November to March",
     duration: "5–10",
-    image: "/images/dest-capetown.jpg",
+    image: "/images/ct.avif",
   },
 ];
 
