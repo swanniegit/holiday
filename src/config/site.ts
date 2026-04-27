@@ -133,21 +133,24 @@ export const PACKAGES = [
     destination: "Mauritius",
     name: "Mauritius Paradise Getaway",
     description: "Experience the pristine beaches, crystal-clear waters, and luxury resorts of Mauritius.",
-    image: "https://picsum.photos/seed/mauritius-pkg/800/600",
+    image: "/images/pkg-mauritius.png",
+    pageImage: "/images/pkgpage-mauritius.png",
   },
   {
     slug: "zanzibar-cultural",
     destination: "Zanzibar",
     name: "Zanzibar Cultural Adventure",
     description: "Discover the spice island of Zanzibar with its rich history and stunning beaches.",
-    image: "https://picsum.photos/seed/zanzibar-pkg/800/600",
+    image: "/images/pkg-zanzibar.png",
+    pageImage: "/images/pkgpage-zanzibar.png",
   },
   {
     slug: "seychelles-island-hopping",
     destination: "Seychelles",
     name: "Seychelles Island Hopping",
     description: "Explore the breathtaking islands of Seychelles with pristine beaches and marine life.",
-    image: "https://picsum.photos/seed/seychelles-pkg/800/600",
+    image: "/images/pkg-seychelles.png",
+    pageImage: "/images/pkgpage-seychelles.png",
   },
 ];
 

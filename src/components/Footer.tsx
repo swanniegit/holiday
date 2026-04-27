@@ -7,9 +7,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 py-14 grid grid-cols-1 md:grid-cols-3 gap-10">
         <div>
           <div className="flex items-center gap-2 mb-4">
-            <div className="w-9 h-9 border-2 border-gold flex items-center justify-center">
-              <span className="font-display text-gold text-sm font-bold leading-none">32H</span>
-            </div>
+            <img src="/logo.png" alt={SITE.name} className="h-9 w-auto" />
           </div>
           <p className="text-sm text-charcoal/70 leading-relaxed max-w-xs">{SITE.tagline}</p>
         </div>

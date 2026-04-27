@@ -13,9 +13,7 @@ export default function Navbar() {
     <nav className="fixed top-0 inset-x-0 z-50 bg-white/95 backdrop-blur-sm border-b border-cream-dark">
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
         <Link href="/" className="flex items-center gap-2">
-          <div className="w-9 h-9 border-2 border-gold flex items-center justify-center">
-            <span className="font-display text-gold text-sm font-bold leading-none">32H</span>
-          </div>
+          <img src="/logo.png" alt={SITE.name} className="h-9 w-auto" />
           <span className="font-display text-gold font-semibold text-lg hidden sm:block">
             {SITE.name}
           </span>
