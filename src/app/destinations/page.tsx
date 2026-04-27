@@ -4,7 +4,8 @@ import DestinationGrid from "@/components/DestinationGrid";
 
 export const metadata: Metadata = {
   title: "Destinations",
-  description: "Explore breathtaking destinations around the world with 32onHerold Holidays.",
+  description: "Explore Mauritius, Zanzibar, Seychelles, Maldives, Bali, Istanbul and more with 32onHerold Holidays. Handpicked destinations for every type of traveller.",
+  openGraph: { title: "Travel Destinations | 32onHerold", description: "Handpicked destinations across the Indian Ocean, Asia and Europe." },
 };
 
 export default function DestinationsPage() {

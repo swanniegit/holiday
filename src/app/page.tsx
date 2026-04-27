@@ -1,5 +1,6 @@
 import Hero from "@/components/Hero";
 import FeaturedDestinations from "@/components/FeaturedDestinations";
+import WhyBookUs from "@/components/WhyBookUs";
 import PopularPackages from "@/components/PopularPackages";
 import Testimonials from "@/components/Testimonials";
 import CTA from "@/components/CTA";
@@ -18,6 +19,7 @@ export default function HomePage() {
         ]}
       />
       <FeaturedDestinations />
+      <WhyBookUs />
       <PopularPackages />
       <Testimonials />
       <CTA />

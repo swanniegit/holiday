@@ -3,8 +3,9 @@ import Hero from "@/components/Hero";
 import Testimonials from "@/components/Testimonials";
 
 export const metadata: Metadata = {
-  title: "Testimonials",
-  description: "Real stories from travelers who trusted 32onHerold Holidays with their adventures.",
+  title: "Client Reviews",
+  description: "Read what our travellers say about 32onHerold Holidays. Real stories, real experiences — from Mauritius to Zanzibar and beyond.",
+  openGraph: { title: "Client Reviews | 32onHerold", description: "Testimonials from South African travellers who trusted us with their holidays." },
 };
 
 export default function TestimonialsPage() {

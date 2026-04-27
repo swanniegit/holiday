@@ -7,7 +7,8 @@ import { PACKAGES } from "@/config/site";
 
 export const metadata: Metadata = {
   title: "Travel Packages",
-  description: "Browse Beachcomber hotel specials and search live availability for Mauritius.",
+  description: "Browse live Beachcomber hotel specials and search real-time availability for Mauritius. Curated packages from 32onHerold Holidays, Somerset West.",
+  openGraph: { title: "Travel Packages | 32onHerold", description: "Live Beachcomber specials and curated travel packages from South Africa." },
 };
 
 export default function PackagesPage() {
