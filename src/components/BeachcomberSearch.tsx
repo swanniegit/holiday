@@ -3,6 +3,8 @@
 import { useState, FormEvent } from "react";
 import type { QuoteRequest, QuoteResponse, RoomOption, AirOption } from "@/types/beachcomber";
 import { HOTEL_CODES, DEPARTURE_CITIES } from "@/config/site";
+import { formatZAR, formatDateTime } from "@/lib/format";
+import { getCheapestPackage } from "@/lib/beachcomber-utils";
 
 const DEFAULT_FORM: Partial<QuoteRequest> = {
   hotelCode: "",
@@ -23,14 +25,6 @@ const DEFAULT_FORM: Partial<QuoteRequest> = {
 
 function toISO(dateStr: string) {
   return dateStr ? `${dateStr}T00:00:00Z` : "";
-}
-
-function formatZAR(amount: number) {
-  return new Intl.NumberFormat("en-ZA", { style: "currency", currency: "ZAR", maximumFractionDigits: 0 }).format(amount);
-}
-
-function formatDateTime(iso: string) {
-  return new Date(iso).toLocaleString("en-ZA", { dateStyle: "short", timeStyle: "short" });
 }
 
 function RoomCard({ room, quoteRef, transferRef, gdsRef, onQuoteSent }: {
@@ -67,8 +61,7 @@ function RoomCard({ room, quoteRef, transferRef, gdsRef, onQuoteSent }: {
     }
   }
 
-  const lowestPkg = room.packages?.reduce((min, p) =>
-    p.pricePerPersonZARFrom < min.pricePerPersonZARFrom ? p : min, room.packages[0]);
+  const lowestPkg = getCheapestPackage(room.packages);
 
   return (
     <div className="border border-cream-dark p-5 rounded-sm">

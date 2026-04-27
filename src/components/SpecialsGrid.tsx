@@ -3,19 +3,12 @@
 import { useEffect, useState } from "react";
 import type { RatesRate, RatesResponse } from "@/types/beachcomber";
 import EnquiryModal from "@/components/EnquiryModal";
-
-function formatDate(iso: string) {
-  return new Date(iso).toLocaleDateString("en-ZA", { day: "numeric", month: "short", year: "numeric" });
-}
-
-function formatZAR(amount: number) {
-  return new Intl.NumberFormat("en-ZA", { style: "currency", currency: "ZAR", maximumFractionDigits: 0 }).format(amount);
-}
+import { formatZAR, formatDate } from "@/lib/format";
+import { getCheapestPackage } from "@/lib/beachcomber-utils";
 
 function SpecialCard({ rate, onEnquire }: { rate: RatesRate; onEnquire: () => void }) {
   const image = rate.hotelImages?.[0]?.imageURL;
-  const lowestPackage = rate.packages?.reduce((min, p) =>
-    p.pricePerPersonZARFrom < min.pricePerPersonZARFrom ? p : min, rate.packages[0]);
+  const lowestPackage = getCheapestPackage(rate.packages);
 
   return (
     <div className="border border-cream-dark rounded-sm overflow-hidden group">
