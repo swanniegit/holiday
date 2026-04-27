@@ -24,7 +24,7 @@ export const DESTINATIONS = [
     description: "A vibrant city bridging Europe and Asia. Istanbul offers a rich tapestry of history, culture, and stunning architecture.",
     bestTime: "Spring to Autumn",
     duration: "4–8",
-    image: "https://picsum.photos/seed/istanbul/800/600",
+    image: "/images/dest-istanbul.jpg",
   },
   {
     slug: "mauritius",
@@ -35,7 +35,7 @@ export const DESTINATIONS = [
     description: "An island nation known for its beaches, lagoons, and reefs. The mountainous interior includes Black River Gorges National Park.",
     bestTime: "May to December",
     duration: "7–14",
-    image: "https://picsum.photos/seed/mauritius/800/600",
+    image: "/images/dest-mauritius.jpg",
   },
   {
     slug: "maldives",
@@ -46,18 +46,18 @@ export const DESTINATIONS = [
     description: "A tropical nation in the Indian Ocean comprised of 26 ring-shaped atolls, made up of more than 1,000 coral islands.",
     bestTime: "November to April",
     duration: "7–10",
-    image: "https://picsum.photos/seed/maldives/800/600",
+    image: "/images/dest-maldives.jpg",
   },
   {
     slug: "zanzibar",
-    country: "Zanzibar",
+    country: "Tanzania",
     flag: "🇹🇿",
     name: "Zanzibar",
     rating: "4.7",
     description: "Discover the spice island of Zanzibar with its rich history and stunning beaches.",
     bestTime: "June to October",
     duration: "7–10",
-    image: "https://picsum.photos/seed/zanzibar/800/600",
+    image: "/images/dest-zanzibar.jpg",
   },
   {
     slug: "seychelles",
@@ -68,7 +68,7 @@ export const DESTINATIONS = [
     description: "Explore the breathtaking islands of Seychelles with pristine beaches and marine life.",
     bestTime: "April to May",
     duration: "7–10",
-    image: "https://picsum.photos/seed/seychelles/800/600",
+    image: "/images/dest-seychelles.jpg",
   },
   {
     slug: "phuket",
@@ -79,7 +79,7 @@ export const DESTINATIONS = [
     description: "Thailand's largest island offers stunning beaches, vibrant nightlife, and rich cultural heritage.",
     bestTime: "November to April",
     duration: "7–14",
-    image: "https://picsum.photos/seed/phuket/800/600",
+    image: "/images/dest-phuket.jpg",
   },
   {
     slug: "belgium",
@@ -90,7 +90,7 @@ export const DESTINATIONS = [
     description: "Discover charming medieval towns, world-class museums, and the finest chocolate and beer in Europe.",
     bestTime: "April to September",
     duration: "5–10",
-    image: "https://picsum.photos/seed/belgium/800/600",
+    image: "/images/dest-belgium.jpg",
   },
   {
     slug: "bali",
@@ -101,7 +101,7 @@ export const DESTINATIONS = [
     description: "The Island of the Gods offers lush rice terraces, ancient temples, volcanic mountains, and a vibrant arts scene.",
     bestTime: "April to October",
     duration: "7–14",
-    image: "https://picsum.photos/seed/bali/800/600",
+    image: "/images/dest-bali.jpg",
   },
   {
     slug: "paris",
@@ -112,7 +112,7 @@ export const DESTINATIONS = [
     description: "The City of Light dazzles with world-class art, iconic landmarks, exquisite cuisine, and unmatched romance.",
     bestTime: "April to June",
     duration: "5–10",
-    image: "https://picsum.photos/seed/paris/800/600",
+    image: "/images/dest-paris.jpg",
   },
   {
     slug: "cape-town",
@@ -123,7 +123,7 @@ export const DESTINATIONS = [
     description: "A breathtaking city at the tip of Africa offering dramatic mountains, pristine beaches, and world-famous wines.",
     bestTime: "November to March",
     duration: "5–10",
-    image: "https://picsum.photos/seed/capetown/800/600",
+    image: "/images/dest-capetown.jpg",
   },
 ];
 

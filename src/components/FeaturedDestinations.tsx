@@ -1,9 +1,14 @@
+"use client";
+
 import Link from "next/link";
+import { useState } from "react";
 import { DESTINATIONS } from "@/config/site";
+import EnquiryModal from "@/components/EnquiryModal";
 
 const featured = DESTINATIONS.slice(0, 3);
 
 export default function FeaturedDestinations() {
+  const [selected, setSelected] = useState<{ name: string; country: string } | null>(null);
   return (
     <section className="bg-cream py-20 px-6">
       <div className="max-w-7xl mx-auto">
@@ -44,13 +49,27 @@ export default function FeaturedDestinations() {
                 <p className="text-charcoal/55 text-sm leading-relaxed mb-4 line-clamp-3">
                   {description}
                 </p>
-                <p className="text-gold text-xs font-medium">
+                <p className="text-gold text-xs font-medium mb-5">
                   Best time: {bestTime} →
                 </p>
+                <button
+                  onClick={() => setSelected({ name, country })}
+                  className="w-full py-2.5 border border-gold text-gold text-sm font-medium hover:bg-gold hover:text-white transition-colors"
+                >
+                  Enquire Now
+                </button>
               </div>
             </div>
           ))}
         </div>
+
+      {selected && (
+        <EnquiryModal
+          packageName={selected.name}
+          destination={selected.country}
+          onClose={() => setSelected(null)}
+        />
+      )}
 
         <div className="text-center mt-10">
           <Link
