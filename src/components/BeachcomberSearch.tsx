@@ -6,11 +6,12 @@ import type { QuoteRequest, QuoteResponse } from "@/types/beachcomber";
 import { HOTEL_CODES, DEPARTURE_CITIES } from "@/config/site";
 import RoomCard from "@/components/beachcomber/RoomCard";
 import FlightCard from "@/components/beachcomber/FlightCard";
+import AppDatePicker from "@/components/ui/AppDatePicker";
 
-const DEFAULT_FORM: Partial<QuoteRequest> = {
+const DEFAULT_FORM = {
   hotelCode: "",
-  dateDeparture: "",
-  dateReturn: "",
+  dateDeparture: null as Date | null,
+  dateReturn: null as Date | null,
   departureCity: "",
   includeAir: "true",
   flightAdvanced: "All Airlines",
@@ -24,8 +25,9 @@ const DEFAULT_FORM: Partial<QuoteRequest> = {
   nbrInfants: 0,
 };
 
-function toISO(dateStr: string) {
-  return dateStr ? `${dateStr}T00:00:00Z` : "";
+function toISO(date: Date | null) {
+  if (!date) return "";
+  return `${date.toISOString().split("T")[0]}T00:00:00Z`;
 }
 
 export default function BeachcomberSearch() {
@@ -34,7 +36,7 @@ export default function BeachcomberSearch() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  function update(field: string, value: string | number) {
+  function update(field: string, value: string | number | Date | null) {
     setForm((prev) => ({ ...prev, [field]: value }));
   }
 
@@ -47,8 +49,8 @@ export default function BeachcomberSearch() {
       const payload = {
         ...DEFAULT_FORM,
         ...form,
-        dateDeparture: toISO(form.dateDeparture as string),
-        dateReturn: toISO(form.dateReturn as string),
+        dateDeparture: toISO(form.dateDeparture),
+        dateReturn: toISO(form.dateReturn),
       } as QuoteRequest;
 
       const res = await fetch("/api/beachcomber/quote", {
@@ -65,8 +67,6 @@ export default function BeachcomberSearch() {
       setLoading(false);
     }
   }
-
-  const minDate = new Date(Date.now() + 7 * 86400000).toISOString().split("T")[0];
 
   return (
     <div className="space-y-8">
@@ -86,15 +86,21 @@ export default function BeachcomberSearch() {
           </div>
           <div>
             <label className="block text-xs text-charcoal/60 mb-1.5">Departure Date</label>
-            <input required type="date" min={minDate} value={form.dateDeparture as string}
-              onChange={(e) => update("dateDeparture", e.target.value)}
-              className="w-full border border-cream-dark bg-white px-3 py-2.5 text-sm text-charcoal focus:outline-none focus:border-gold" />
+            <AppDatePicker
+              value={form.dateDeparture}
+              onChange={(d) => update("dateDeparture", d)}
+              minDate={new Date(Date.now() + 7 * 86400000)}
+              required
+            />
           </div>
           <div>
             <label className="block text-xs text-charcoal/60 mb-1.5">Return Date</label>
-            <input required type="date" min={minDate} value={form.dateReturn as string}
-              onChange={(e) => update("dateReturn", e.target.value)}
-              className="w-full border border-cream-dark bg-white px-3 py-2.5 text-sm text-charcoal focus:outline-none focus:border-gold" />
+            <AppDatePicker
+              value={form.dateReturn}
+              onChange={(d) => update("dateReturn", d)}
+              minDate={form.dateDeparture ?? new Date(Date.now() + 7 * 86400000)}
+              required
+            />
           </div>
           <div>
             <label className="block text-xs text-charcoal/60 mb-1.5">Departure City</label>

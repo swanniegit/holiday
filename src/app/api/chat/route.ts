@@ -24,6 +24,10 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Invalid email" }, { status: 400 });
     }
 
+    const phone = esc(body.phone as string);
+    const travelDates = esc(body.travelDates as string);
+    const departureCity = esc(body.departureCity as string);
+
     await sendMail({
       to: SITE.email,
       replyTo: email || undefined,
@@ -33,7 +37,9 @@ export async function POST(req: NextRequest) {
         <table cellpadding="6" style="font-family:Arial,sans-serif;font-size:14px;border-collapse:collapse">
           <tr><td><strong>Name</strong></td><td>${esc(name)}</td></tr>
           ${email ? `<tr><td><strong>Email</strong></td><td><a href="mailto:${esc(email)}">${esc(email)}</a></td></tr>` : ""}
-          ${body.phone ? `<tr><td><strong>Phone</strong></td><td>${esc(body.phone as string)}</td></tr>` : ""}
+          ${phone ? `<tr><td><strong>Phone</strong></td><td>${phone}</td></tr>` : ""}
+          ${travelDates ? `<tr><td><strong>Travel Dates</strong></td><td>${travelDates}</td></tr>` : ""}
+          ${departureCity ? `<tr><td><strong>Departure City</strong></td><td>${departureCity}</td></tr>` : ""}
           <tr><td><strong>Message</strong></td><td style="white-space:pre-wrap">${esc(message)}</td></tr>
         </table>
       `,

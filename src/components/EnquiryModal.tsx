@@ -3,6 +3,7 @@
 import { useState, FormEvent, ReactNode } from "react";
 import { DEPARTURE_CITIES, STAR_GRADINGS } from "@/config/site";
 import type { EnquiryPayload } from "@/types/beachcomber";
+import AppDatePicker from "@/components/ui/AppDatePicker";
 
 interface EnquiryModalProps {
   packageName?: string;
@@ -31,6 +32,8 @@ function FormSection({ title, iconPath, children }: { title: string; iconPath: s
 }
 
 export default function EnquiryModal({ packageName, destination, onClose }: EnquiryModalProps) {
+  const [dateFrom, setDateFrom] = useState<Date | null>(null);
+  const [dateTo, setDateTo] = useState<Date | null>(null);
   const [form, setForm] = useState<EnquiryPayload>({
     packageName,
     name: "",
@@ -50,14 +53,24 @@ export default function EnquiryModal({ packageName, destination, onClose }: Enqu
     setForm((prev) => ({ ...prev, [field]: value }));
   }
 
+  function formatDate(d: Date | null) {
+    if (!d) return "";
+    return d.toLocaleDateString("en-ZA", { day: "2-digit", month: "short", year: "2-digit" });
+  }
+
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     setStatus("loading");
+    const travelDates = dateFrom
+      ? dateTo
+        ? `${formatDate(dateFrom)} – ${formatDate(dateTo)}`
+        : formatDate(dateFrom)
+      : form.travelDates;
     try {
       const res = await fetch("/api/enquiry", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, travelDates }),
       });
       if (!res.ok) throw new Error("Submission failed");
       setStatus("success");
@@ -117,11 +130,24 @@ export default function EnquiryModal({ packageName, destination, onClose }: Enqu
 
               <FormSection title="Travel Details" iconPath="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
                 <div className="space-y-4">
-                  <div>
-                    <label className="block text-xs text-charcoal/60 mb-1.5">Preferred Travel Dates *</label>
-                    <input required type="text" placeholder="e.g., December 2024 or 15-25 Dec 2024"
-                      value={form.travelDates} onChange={(e) => update("travelDates", e.target.value)}
-                      className="w-full border border-cream-dark px-3 py-2.5 text-sm text-charcoal placeholder:text-charcoal/30 focus:outline-none focus:border-gold" />
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs text-charcoal/60 mb-1.5">Departure Date *</label>
+                      <AppDatePicker
+                        value={dateFrom}
+                        onChange={(d) => { setDateFrom(d); if (dateTo && d && d > dateTo) setDateTo(null); }}
+                        minDate={new Date()}
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs text-charcoal/60 mb-1.5">Return Date</label>
+                      <AppDatePicker
+                        value={dateTo}
+                        onChange={setDateTo}
+                        minDate={dateFrom ?? new Date()}
+                      />
+                    </div>
                   </div>
                   <div className="grid grid-cols-2 gap-4">
                     <div>

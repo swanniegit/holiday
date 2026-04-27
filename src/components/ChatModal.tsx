@@ -1,27 +1,39 @@
 "use client";
 
 import { useState, FormEvent } from "react";
+import AppDatePicker from "@/components/ui/AppDatePicker";
+import { DEPARTURE_CITIES } from "@/config/site";
 
 interface ChatModalProps {
   onClose: () => void;
 }
 
 export default function ChatModal({ onClose }: ChatModalProps) {
-  const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
+  const [form, setForm] = useState({ name: "", email: "", phone: "", departureCity: "", message: "" });
+  const [dateFrom, setDateFrom] = useState<Date | null>(null);
+  const [dateTo, setDateTo] = useState<Date | null>(null);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
   function update(field: keyof typeof form, value: string) {
     setForm((prev) => ({ ...prev, [field]: value }));
   }
 
+  function formatDate(d: Date | null) {
+    if (!d) return "";
+    return d.toLocaleDateString("en-ZA", { day: "2-digit", month: "short", year: "2-digit" });
+  }
+
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     setStatus("loading");
+    const travelDates = dateFrom
+      ? dateTo ? `${formatDate(dateFrom)} – ${formatDate(dateTo)}` : formatDate(dateFrom)
+      : "";
     try {
       const res = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, travelDates }),
       });
       if (!res.ok) throw new Error("Failed");
       setStatus("success");
@@ -33,7 +45,7 @@ export default function ChatModal({ onClose }: ChatModalProps) {
   return (
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center sm:justify-end px-0 sm:px-6 sm:pb-6">
       <div className="absolute inset-0 bg-black/40" onClick={onClose} />
-      <div className="relative bg-white w-full sm:w-96 rounded-t-2xl sm:rounded-2xl shadow-2xl">
+      <div className="relative bg-white w-full sm:w-[420px] rounded-t-2xl sm:rounded-2xl shadow-2xl max-h-[90vh] overflow-y-auto">
         <div className="p-6">
           <div className="flex items-start justify-between mb-5">
             <div>
@@ -61,31 +73,63 @@ export default function ChatModal({ onClose }: ChatModalProps) {
               </button>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-3">
+            <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-2 gap-3">
                 <div>
                   <label className="block text-xs text-charcoal/60 mb-1">Name *</label>
                   <input required type="text" value={form.name} onChange={(e) => update("name", e.target.value)}
-                    className="w-full border border-cream-dark px-3 py-2 text-sm text-charcoal focus:outline-none focus:border-gold" />
+                    className="w-full border border-cream-dark px-3 py-2.5 text-sm text-charcoal focus:outline-none focus:border-gold" />
                 </div>
                 <div>
                   <label className="block text-xs text-charcoal/60 mb-1">Phone</label>
                   <input type="tel" value={form.phone} onChange={(e) => update("phone", e.target.value)}
-                    className="w-full border border-cream-dark px-3 py-2 text-sm text-charcoal focus:outline-none focus:border-gold" />
+                    className="w-full border border-cream-dark px-3 py-2.5 text-sm text-charcoal focus:outline-none focus:border-gold" />
                 </div>
               </div>
+
               <div>
                 <label className="block text-xs text-charcoal/60 mb-1">Email</label>
                 <input type="email" value={form.email} onChange={(e) => update("email", e.target.value)}
-                  className="w-full border border-cream-dark px-3 py-2 text-sm text-charcoal focus:outline-none focus:border-gold" />
+                  className="w-full border border-cream-dark px-3 py-2.5 text-sm text-charcoal focus:outline-none focus:border-gold" />
               </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-xs text-charcoal/60 mb-1">Travel From</label>
+                  <AppDatePicker
+                    value={dateFrom}
+                    onChange={(d) => { setDateFrom(d); if (dateTo && d && d > dateTo) setDateTo(null); }}
+                    minDate={new Date()}
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs text-charcoal/60 mb-1">Travel To</label>
+                  <AppDatePicker
+                    value={dateTo}
+                    onChange={setDateTo}
+                    minDate={dateFrom ?? new Date()}
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-xs text-charcoal/60 mb-1">Departure City</label>
+                <select value={form.departureCity} onChange={(e) => update("departureCity", e.target.value)}
+                  className="w-full border border-cream-dark px-3 py-2.5 text-sm text-charcoal focus:outline-none focus:border-gold">
+                  <option value="">Select city</option>
+                  {DEPARTURE_CITIES.map((c) => <option key={c} value={c}>{c}</option>)}
+                </select>
+              </div>
+
               <div>
                 <label className="block text-xs text-charcoal/60 mb-1">Message *</label>
                 <textarea required rows={3} value={form.message} onChange={(e) => update("message", e.target.value)}
                   placeholder="Tell us where you'd like to go or ask us anything…"
-                  className="w-full border border-cream-dark px-3 py-2 text-sm text-charcoal placeholder:text-charcoal/30 focus:outline-none focus:border-gold resize-none" />
+                  className="w-full border border-cream-dark px-3 py-2.5 text-sm text-charcoal placeholder:text-charcoal/30 focus:outline-none focus:border-gold resize-none" />
               </div>
+
               {status === "error" && <p className="text-red-500 text-xs">Something went wrong. Please try again.</p>}
+
               <button type="submit" disabled={status === "loading"}
                 className="w-full py-2.5 bg-gold text-white text-sm font-medium hover:bg-gold-dark transition-colors disabled:opacity-60">
                 {status === "loading" ? "Sending…" : "Send Message"}
