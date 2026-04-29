@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>We're Live!</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 600px;
+    height: 600px;
+    font-family: Georgia, serif;
+    overflow: hidden;
+  }
+
+  .card {
+    width: 600px;
+    height: 600px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('/images/dest-mauritius.jpg');
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.55);
+  }
+
+  .content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 40px;
+  }
+
+  .logo-wrap {
+    background: rgba(255,255,255,0.12);
+    border: 2px solid rgba(184,146,58,0.8);
+    border-radius: 16px;
+    padding: 14px 28px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 28px;
+    backdrop-filter: blur(6px);
+  }
+
+  .logo-wrap img {
+    height: 44px;
+    width: auto;
+  }
+
+  .logo-name {
+    font-family: Georgia, serif;
+    color: #d4a843;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+  }
+
+  .live-badge {
+    background: #b8923a;
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 6px 18px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-bottom: 20px;
+  }
+
+  h1 {
+    font-family: Georgia, serif;
+    font-size: 58px;
+    color: #ffffff;
+    line-height: 1.1;
+    margin-bottom: 16px;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+  }
+
+  h1 span {
+    color: #d4a843;
+  }
+
+  .tagline {
+    color: rgba(255,255,255,0.85);
+    font-size: 17px;
+    margin-bottom: 32px;
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  .domain-pill {
+    background: rgba(184,146,58,0.9);
+    backdrop-filter: blur(4px);
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 12px 32px;
+    border-radius: 50px;
+    display: inline-block;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 20px rgba(184,146,58,0.5);
+  }
+
+  .stars {
+    color: #d4a843;
+    font-size: 22px;
+    margin-bottom: 14px;
+    letter-spacing: 4px;
+  }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="bg"></div>
+  <div class="content">
+    <div class="logo-wrap">
+      <img src="/logo.png" alt="32onH" />
+      <span class="logo-name">32onHerold Holidays</span>
+    </div>
+    <div class="live-badge">🎉 Now Live</div>
+    <h1>We're <span>Online!</span></h1>
+    <p class="tagline">Your gateway to unforgettable travel<br>experiences is finally here</p>
+    <div class="stars">★ ★ ★ ★ ★</div>
+    <div class="domain-pill">🌍 &nbsp;32onh.co.za</div>
+  </div>
+</div>
+</body>
+</html>

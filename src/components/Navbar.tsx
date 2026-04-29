@@ -15,7 +15,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
         <Link href="/" className="flex items-center gap-2">
           <Image src="/logo.png" alt={SITE.name} width={144} height={36} className="h-9 w-auto" />
-          <span className="font-display text-gold font-semibold text-lg hidden sm:block">
+          <span className="font-display text-gold font-semibold text-lg">
             {SITE.name}
           </span>
         </Link>

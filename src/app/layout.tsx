@@ -5,21 +5,22 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ChatButton from "@/components/ChatButton";
+import NewsletterPopup from "@/components/NewsletterPopup";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
 const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-display", display: "swap" });
 
-const BASE = "https://32onherold-holidays.vercel.app";
+const BASE = "https://32onh.co.za";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE),
   title: {
-    default: "32onHerold Holidays | Curated Travel Experiences from South Africa",
-    template: "%s | 32onHerold",
+    default: "32onH - Holidays | Curated Travel Experiences from South Africa",
+    template: "%s | 32onH",
   },
   description:
-    "Expert travel packages to Mauritius, Zanzibar, Seychelles, Maldives, Bali and more. Personalised itineraries crafted by 32onHerold Holidays, based in Somerset West, Cape Town.",
+    "Expert travel packages to Mauritius, Zanzibar, Seychelles, Maldives, Bali and more. Personalised itineraries crafted by 32onH - Holidays, based in Somerset West, Cape Town.",
   keywords: [
     "travel agency Somerset West",
     "travel agent Cape Town",
@@ -27,22 +28,22 @@ export const metadata: Metadata = {
     "Zanzibar travel packages",
     "Seychelles holidays",
     "luxury travel South Africa",
-    "32onHerold Holidays",
+    "32onH - Holidays",
     "Beachcomber hotels South Africa",
   ],
   alternates: { canonical: BASE },
   openGraph: {
-    title: "32onHerold Holidays | Curated Travel Experiences",
+    title: "32onH - Holidays | Curated Travel Experiences",
     description: "Personalised travel packages to Mauritius, Zanzibar, Seychelles and beyond. Based in Somerset West, Cape Town.",
     url: BASE,
-    siteName: "32onHerold Holidays",
-    images: [{ url: "/images/hero.jpg", width: 1200, height: 630, alt: "32onHerold Holidays – Curated Travel from Cape Town" }],
+    siteName: "32onH - Holidays",
+    images: [{ url: "/images/hero.jpg", width: 1200, height: 630, alt: "32onH - Holidays – Curated Travel from Cape Town" }],
     locale: "en_ZA",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "32onHerold Holidays | Curated Travel Experiences",
+    title: "32onH - Holidays | Curated Travel Experiences",
     description: "Personalised travel packages to Mauritius, Zanzibar, Seychelles and beyond.",
     images: ["/images/hero.jpg"],
   },
@@ -59,7 +60,7 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "TravelAgency",
-  name: "32onHerold Holidays",
+  name: "32onH - Holidays",
   url: BASE,
   email: "travel@pjfmarkgraaff.co.za",
   description: "Personalised travel packages to Mauritius, Zanzibar, Seychelles, Maldives and more. Based in Somerset West, Cape Town, South Africa.",
@@ -93,6 +94,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main>{children}</main>
         <Footer />
         <ChatButton />
+        <NewsletterPopup />
         <Analytics />
         <SpeedInsights />
       </body>

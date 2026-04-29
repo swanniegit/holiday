@@ -1,5 +1,5 @@
 export const SITE = {
-  name: "32onHerold Holidays",
+  name: "32onH - Holidays",
   tagline: "Discover the world with 32onH Holidays. We create unforgettable travel experiences tailored to your dreams and desires.",
   address: "Somerset West, Cape Town, South Africa",
   email: "travel@pjfmarkgraaff.co.za",
@@ -10,6 +10,7 @@ export const SITE = {
     { label: "Destinations", href: "/destinations" },
     { label: "Packages", href: "/packages" },
     { label: "Testimonials", href: "/testimonials" },
+    { label: "Live Mauritius Quotes", href: "/packages#live-quotes" },
     { label: "Contact", href: "/contact" },
   ],
 };
@@ -47,17 +48,6 @@ export const DESTINATIONS = [
     bestTime: "November to April",
     duration: "7–10",
     image: "/images/dest-maldives.jpg",
-  },
-  {
-    slug: "zanzibar",
-    country: "Tanzania",
-    flag: "🇹🇿",
-    name: "Zanzibar",
-    rating: "4.7",
-    description: "Discover the spice island of Zanzibar with its rich history and stunning beaches.",
-    bestTime: "June to October",
-    duration: "7–10",
-    image: "/images/dest-zanzibar.jpg",
   },
   {
     slug: "seychelles",
@@ -114,17 +104,6 @@ export const DESTINATIONS = [
     duration: "5–10",
     image: "/images/dest-paris.jpg",
   },
-  {
-    slug: "cape-town",
-    country: "South Africa",
-    flag: "🇿🇦",
-    name: "Cape Town",
-    rating: "4.8",
-    description: "A breathtaking city at the tip of Africa offering dramatic mountains, pristine beaches, and world-famous wines.",
-    bestTime: "November to March",
-    duration: "5–10",
-    image: "/images/ct.avif",
-  },
 ];
 
 export const PACKAGES = [
@@ -155,6 +134,11 @@ export const PACKAGES = [
 ];
 
 export const TESTIMONIALS = [
+  {
+    name: "Mercia",
+    trip: "Unforgettable Mauritius Holiday with 32onH's Expert Touch",
+    quote: "We just returned from an unforgettable Mauritius holiday, thanks to 32onH Holidays. They made planning effortless, listened carefully, and ensured every detail was seamless. Beachcomber Canonnier exceeded expectations—breathtaking, family-friendly, and relaxing. 32onH's professionalism created beautiful memories. Highly recommended, and we'll definitely book through them again!",
+  },
   {
     name: "Maryna van Staden",
     trip: "Phuket Island Hopper",

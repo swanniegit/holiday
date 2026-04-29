@@ -11,7 +11,7 @@ export interface MailOptions {
 
 export async function sendMail(opts: MailOptions): Promise<void> {
   const { error } = await resend.emails.send({
-    from: "32onHerold Holidays <onboarding@resend.dev>",
+    from: "32onH - Holidays <noreply@yellowarcher.co.za>",
     to: opts.to,
     replyTo: opts.replyTo,
     subject: opts.subject,

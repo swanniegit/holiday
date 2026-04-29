@@ -7,7 +7,8 @@ import DestinationCard from "@/components/DestinationCard";
 import SectionHeading from "@/components/SectionHeading";
 import OutlineLink from "@/components/OutlineLink";
 
-const featured = DESTINATIONS.slice(0, 3);
+const featuredSlugs = ["mauritius", "maldives", "istanbul"];
+const featured = featuredSlugs.map((s) => DESTINATIONS.find((d) => d.slug === s)!);
 
 export default function FeaturedDestinations() {
   const [selected, setSelected] = useState<{ name: string; country: string } | null>(null);

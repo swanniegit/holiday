@@ -23,6 +23,7 @@ const DEFAULT_FORM = {
   nbrAdults: 2,
   nbrChildren: 0,
   nbrInfants: 0,
+  childAges: [] as number[],
 };
 
 function toISO(date: Date | null) {
@@ -37,7 +38,24 @@ export default function BeachcomberSearch() {
   const [error, setError] = useState<string | null>(null);
 
   function update(field: string, value: string | number | Date | null) {
-    setForm((prev) => ({ ...prev, [field]: value }));
+    setForm((prev) => {
+      const next = { ...prev, [field]: value };
+      if (field === "nbrChildren") {
+        const count = Number(value);
+        const ages = [...prev.childAges];
+        while (ages.length < count) ages.push(5);
+        next.childAges = ages.slice(0, count);
+      }
+      return next;
+    });
+  }
+
+  function updateChildAge(index: number, age: number) {
+    setForm((prev) => {
+      const ages = [...prev.childAges];
+      ages[index] = age;
+      return { ...prev, childAges: ages };
+    });
   }
 
   async function handleSearch(e: FormEvent) {
@@ -46,12 +64,17 @@ export default function BeachcomberSearch() {
     setError(null);
     setResults(null);
     try {
+      const childAgeFields: Record<string, number> = {};
+      form.childAges.forEach((age, i) => { childAgeFields[`childAge${i + 1}`] = age; });
+
+      const { childAges: _childAges, ...formWithoutAges } = form;
       const payload = {
         ...DEFAULT_FORM,
-        ...form,
+        ...formWithoutAges,
         dateDeparture: toISO(form.dateDeparture),
         dateReturn: toISO(form.dateReturn),
-      } as QuoteRequest;
+        ...childAgeFields,
+      } as unknown as QuoteRequest;
 
       const res = await fetch("/api/beachcomber/quote", {
         method: "POST",
@@ -127,6 +150,18 @@ export default function BeachcomberSearch() {
               {[0, 1, 2, 3, 4].map((n) => <option key={n} value={n}>{n}</option>)}
             </select>
           </div>
+          {form.childAges.map((age, i) => (
+            <div key={i}>
+              <label className="block text-xs text-charcoal/60 mb-1.5">Child {i + 1} Age</label>
+              <select value={age} onChange={(e) => updateChildAge(i, Number(e.target.value))}
+                className="w-full border border-cream-dark bg-white px-3 py-2.5 text-sm text-charcoal focus:outline-none focus:border-gold">
+                {[...Array(12)].map((_, n) => (
+                  <option key={n + 2} value={n + 2}>{n + 2} yrs</option>
+                ))}
+              </select>
+            </div>
+          ))}
+
           <div className="flex items-end pb-1">
             <label className="flex items-center gap-2 cursor-pointer text-sm text-charcoal">
               <input type="checkbox" checked={form.honeymoonRates === "true"}

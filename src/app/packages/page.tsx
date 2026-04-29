@@ -56,6 +56,20 @@ export default function PackagesPage() {
         </div>
       </section>
 
+      <section id="live-quotes" className="py-20 px-6 bg-cream">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-14">
+            <h2 className="font-display text-4xl md:text-5xl text-charcoal font-semibold">
+              Search Live Rates
+            </h2>
+            <p className="mt-3 text-charcoal/60 max-w-lg mx-auto">
+              Choose your hotel, dates, and party size — get an instant quote emailed directly to you
+            </p>
+          </div>
+          <BeachcomberSearch />
+        </div>
+      </section>
+
       <section className="py-20 px-6 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-14">
@@ -67,20 +81,6 @@ export default function PackagesPage() {
             </p>
           </div>
           <SpecialsGrid />
-        </div>
-      </section>
-
-      <section className="py-20 px-6 bg-cream">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-14">
-            <h2 className="font-display text-4xl md:text-5xl text-charcoal font-semibold">
-              Search Live Rates
-            </h2>
-            <p className="mt-3 text-charcoal/60 max-w-lg mx-auto">
-              Choose your hotel, dates, and party size — get an instant quote emailed directly to you
-            </p>
-          </div>
-          <BeachcomberSearch />
         </div>
       </section>
     </>

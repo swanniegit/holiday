@@ -3,6 +3,6 @@ import type { MetadataRoute } from "next";
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: { userAgent: "*", allow: "/" },
-    sitemap: "https://32onherold-holidays.vercel.app/sitemap.xml",
+    sitemap: "https://32onh.co.za/sitemap.xml",
   };
 }
