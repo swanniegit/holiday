@@ -42,7 +42,7 @@ export default function MauritiusSpecialPopup({ onClose }: Props) {
           <p className="text-xs uppercase tracking-widest text-gold font-medium mb-3">Mauritius May Special</p>
 
           <h2 className="font-display text-2xl text-charcoal font-semibold leading-snug mb-2">
-            Book Your Mauritius Escape<br />&amp; Save <span className="text-gold">7%!</span>
+            Book Your Beachcomber<br />Mauritius Escape &amp; Save <span className="text-gold">7%!</span>
           </h2>
 
           <p className="text-charcoal/60 text-sm leading-relaxed mb-1">
