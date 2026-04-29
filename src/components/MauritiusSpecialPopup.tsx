@@ -1,10 +1,25 @@
 "use client";
 
+import { useState } from "react";
+import EnquiryModal from "@/components/EnquiryModal";
+
 interface Props {
   onClose?: () => void;
 }
 
 export default function MauritiusSpecialPopup({ onClose }: Props) {
+  const [showEnquiry, setShowEnquiry] = useState(false);
+
+  if (showEnquiry) {
+    return (
+      <EnquiryModal
+        packageName="Mauritius Paradise Getaway"
+        destination="Mauritius"
+        onClose={() => { setShowEnquiry(false); onClose?.(); }}
+      />
+    );
+  }
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
       <div className="absolute inset-0 bg-black/50" onClick={onClose} />
@@ -45,13 +60,12 @@ export default function MauritiusSpecialPopup({ onClose }: Props) {
           >
             Get Live Quote Now
           </a>
-          <a
-            href="/contact"
-            onClick={onClose}
+          <button
+            onClick={() => setShowEnquiry(true)}
             className="block w-full py-3 mt-2 border border-gold text-gold text-sm font-medium text-center hover:bg-cream transition-colors"
           >
             Enquire Here
-          </a>
+          </button>
 
           <p className="text-charcoal/40 text-xs mt-4 leading-relaxed">
             T&amp;Cs apply. Discount applies to land packages only, not airfare.
