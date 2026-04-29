@@ -43,7 +43,14 @@ export default function MauritiusSpecialPopup({ onClose }: Props) {
             onClick={onClose}
             className="block w-full py-3 bg-gold text-white text-sm font-medium text-center hover:bg-gold-dark transition-colors"
           >
-            Book Now &amp; Save More
+            Get Live Quote Now
+          </a>
+          <a
+            href="/contact"
+            onClick={onClose}
+            className="block w-full py-3 mt-2 border border-gold text-gold text-sm font-medium text-center hover:bg-cream transition-colors"
+          >
+            Enquire Here
           </a>
 
           <p className="text-charcoal/40 text-xs mt-4 leading-relaxed">
