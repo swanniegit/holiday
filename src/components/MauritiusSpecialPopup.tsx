@@ -7,78 +7,58 @@ interface Props {
 export default function MauritiusSpecialPopup({ onClose }: Props) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
-      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={onClose} />
+      <div className="absolute inset-0 bg-black/50" onClick={onClose} />
+      <div className="relative bg-white w-full max-w-md shadow-2xl rounded-sm overflow-hidden">
 
-      <div className="relative w-full max-w-md overflow-hidden rounded-2xl shadow-2xl">
+        {/* Gold accent bar */}
+        <div className="h-1 bg-gold w-full" />
 
-        {/* Background: beach image + sunset gradient overlay */}
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/images/dest-mauritius.jpg')" }}
-        />
-        <div className="absolute inset-0" style={{
-          background: "linear-gradient(170deg, rgba(8,70,90,0.82) 0%, rgba(14,116,144,0.65) 40%, rgba(217,119,6,0.70) 72%, rgba(194,65,12,0.85) 100%)"
-        }} />
+        <div className="p-8">
+          <button
+            onClick={onClose}
+            className="absolute top-4 right-4 text-charcoal/30 hover:text-charcoal transition-colors"
+            aria-label="Close"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
 
-        {/* Palm silhouettes — bottom corners */}
-        <svg className="absolute bottom-0 left-0 h-40 w-28 opacity-60 pointer-events-none" viewBox="0 0 120 200" fill="none">
-          <path d="M40 200 Q42 140 38 100 Q20 80 0 70 Q18 72 36 90 Q30 60 10 40 Q28 55 38 82 Q34 50 22 28 Q36 48 40 78 Q40 50 32 30 Q42 54 42 80 Q46 54 38 32 Q50 56 44 82 Q50 60 46 38 Q54 62 46 88 Q58 70 62 50 Q58 76 48 92 Q52 120 50 200Z" fill="#0f172a"/>
-        </svg>
-        <svg className="absolute bottom-0 right-0 h-40 w-28 opacity-60 pointer-events-none" viewBox="0 0 120 200" fill="none" style={{ transform: "scaleX(-1)" }}>
-          <path d="M40 200 Q42 140 38 100 Q20 80 0 70 Q18 72 36 90 Q30 60 10 40 Q28 55 38 82 Q34 50 22 28 Q36 48 40 78 Q40 50 32 30 Q42 54 42 80 Q46 54 38 32 Q50 56 44 82 Q50 60 46 38 Q54 62 46 88 Q58 70 62 50 Q58 76 48 92 Q52 120 50 200Z" fill="#0f172a"/>
-        </svg>
+          <p className="text-xs uppercase tracking-widest text-gold font-medium mb-3">Mauritius May Special</p>
 
-        {/* Close button */}
-        <button
-          onClick={onClose}
-          className="absolute top-4 right-4 z-10 text-white/60 hover:text-white transition-colors"
-          aria-label="Close"
-        >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
-
-        {/* Content */}
-        <div className="relative z-10 px-8 pt-10 pb-8 text-center">
-
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/30 rounded-full px-4 py-1.5 mb-6">
-            <span className="text-amber-300 text-xs font-semibold uppercase tracking-widest">🌺 Mauritius May Special</span>
-          </div>
-
-          {/* Headline */}
-          <h2 className="font-display text-3xl font-bold text-white leading-tight mb-5 drop-shadow-lg">
-            ✨ Book Your Mauritius<br />Escape &amp; Save{" "}
-            <span className="text-amber-300">7%!</span> ✨
+          <h2 className="font-display text-2xl text-charcoal font-semibold leading-snug mb-2">
+            Book Your Mauritius Escape<br />&amp; Save <span className="text-gold">7%!</span>
           </h2>
 
-          {/* Body */}
-          <p className="text-white/90 text-sm leading-relaxed mb-2">
-            Reserve your next Mauritius trip in May and enjoy an<br />
-            <strong className="text-white">additional 7% discount</strong> on us.
+          <p className="text-charcoal/60 text-sm leading-relaxed mb-1">
+            Reserve your next Mauritius trip in May and enjoy an{" "}
+            <strong className="text-charcoal">additional 7% discount</strong> on us.
           </p>
-          <p className="text-cyan-200 text-sm mb-7">
-            🌴 Valid for travel between <strong>June 2026 – June 2027</strong>.
+          <p className="text-charcoal/60 text-sm leading-relaxed mb-6">
+            Valid for travel between <strong className="text-charcoal">June 2026 – June 2027</strong>.
           </p>
 
-          {/* CTA */}
           <a
             href="/packages#live-quotes"
             onClick={onClose}
-            className="inline-block w-full py-3.5 rounded-xl font-semibold text-white text-sm shadow-lg transition-all hover:scale-[1.02] active:scale-[0.98]"
-            style={{ background: "linear-gradient(90deg, #0891b2, #0e7490)" }}
+            className="block w-full py-3 bg-gold text-white text-sm font-medium text-center hover:bg-gold-dark transition-colors"
           >
-            👉 Book Now &amp; Save More
+            Book Now &amp; Save More
           </a>
 
-          {/* T&C + urgency */}
-          <p className="text-white/50 text-xs mt-4 leading-relaxed">
+          <p className="text-charcoal/40 text-xs mt-4 leading-relaxed">
             T&amp;Cs apply. Discount applies to land packages only, not airfare.
           </p>
-          <p className="text-amber-300/80 text-xs mt-1 font-medium">
-            ⏳ Offer valid until 4 June 2026
+          <p className="text-gold/70 text-xs mt-1 font-medium">
+            Offer valid until 4 June 2026
           </p>
+
+          <button
+            onClick={onClose}
+            className="mt-3 text-xs text-charcoal/30 hover:text-charcoal/60 transition-colors underline"
+          >
+            No thanks
+          </button>
         </div>
       </div>
     </div>
