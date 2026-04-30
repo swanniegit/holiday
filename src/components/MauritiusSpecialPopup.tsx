@@ -1,28 +1,48 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import EnquiryModal from "@/components/EnquiryModal";
 
+const STORAGE_KEY = "32onh_mauritius_may_seen";
+
 interface Props {
+  forceVisible?: boolean;
   onClose?: () => void;
 }
 
-export default function MauritiusSpecialPopup({ onClose }: Props) {
+export default function MauritiusSpecialPopup({ forceVisible, onClose }: Props) {
+  const [visible, setVisible] = useState(forceVisible ?? false);
   const [showEnquiry, setShowEnquiry] = useState(false);
+
+  useEffect(() => {
+    if (forceVisible) return;
+    if (typeof window !== "undefined" && !localStorage.getItem(STORAGE_KEY)) {
+      const timer = setTimeout(() => setVisible(true), 2500);
+      return () => clearTimeout(timer);
+    }
+  }, [forceVisible]);
+
+  if (!visible) return null;
+
+  function dismiss() {
+    if (!forceVisible) localStorage.setItem(STORAGE_KEY, "1");
+    setVisible(false);
+    onClose?.();
+  }
 
   if (showEnquiry) {
     return (
       <EnquiryModal
         packageName="Mauritius Paradise Getaway"
         destination="Mauritius"
-        onClose={() => { setShowEnquiry(false); onClose?.(); }}
+        onClose={() => { setShowEnquiry(false); dismiss(); }}
       />
     );
   }
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
-      <div className="absolute inset-0 bg-black/50" onClick={onClose} />
+      <div className="absolute inset-0 bg-black/50" onClick={dismiss} />
       <div className="relative bg-white w-full max-w-md shadow-2xl rounded-sm overflow-hidden">
 
         {/* Gold accent bar */}
@@ -30,7 +50,7 @@ export default function MauritiusSpecialPopup({ onClose }: Props) {
 
         <div className="p-8">
           <button
-            onClick={onClose}
+            onClick={dismiss}
             className="absolute top-4 right-4 text-charcoal/30 hover:text-charcoal transition-colors"
             aria-label="Close"
           >
@@ -55,7 +75,7 @@ export default function MauritiusSpecialPopup({ onClose }: Props) {
 
           <a
             href="/packages#live-quotes"
-            onClick={onClose}
+            onClick={dismiss}
             className="block w-full py-3 bg-gold text-white text-sm font-medium text-center hover:bg-gold-dark transition-colors"
           >
             Get Live Quote Now
@@ -75,7 +95,7 @@ export default function MauritiusSpecialPopup({ onClose }: Props) {
           </p>
 
           <button
-            onClick={onClose}
+            onClick={dismiss}
             className="mt-3 text-xs text-charcoal/30 hover:text-charcoal/60 transition-colors underline"
           >
             No thanks
